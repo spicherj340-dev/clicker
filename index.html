@@ -6,22 +6,13 @@
 </head>
 <body>
     <h1>Click the button to say Hello</h1>
-    <button id="helloBtn">Say Hello</button>
-    <p id="message"></p>
+    <button id="btn">Say Hello</button>
+    <p id="msg"></p>
 
     <script>
-        const button = document.getElementById("helloBtn");
-        const message = document.getElementById("message");
-
-        button.addEventListener("click", async () => {
-            try {
-                const response = await fetch("https://click-21ny.onrender.com/hello");
-                const text = await response.text();
-                message.innerText = text;
-            } catch (err) {
-                message.innerText = "Error contacting backend";
-                console.error(err);
-            }
+        document.getElementById("btn").addEventListener("click", async () => {
+            const res = await fetch("/hello");
+            document.getElementById("msg").innerText = await res.text();
         });
     </script>
 </body>
